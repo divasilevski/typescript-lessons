@@ -66,15 +66,21 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "exclude": [
-    "./init.ts",
-    "./01.types.ts",
-    "./02.interfaces.ts",
-    "./03.enums.ts",
-    "./04.functions.ts",
-    "./05.classes.ts",
-    "./06.guards.ts",
-    "./07.generic.ts",
-    "./08.operators.ts"
-  ]
+  // "exclude": [
+  //   "./init.ts",
+  //   "./01.types.ts",
+  //   "./02.interfaces.ts",
+  //   "./03.enums.ts",
+  //   "./04.functions.ts",
+  //   "./05.classes.ts",
+  //   "./06.guards.ts",
+  //   "./07.generic.ts",
+  //   "./08.operators.ts"
+  // ],
+  "include": [
+    "./src/**/*"
+  ],
+  // "files": [
+  //   "./init.ts"
+  // ]
 }
