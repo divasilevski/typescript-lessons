@@ -14,3 +14,4 @@ console.log(s);
 
 
 // create index.html + add css framework
+// add "exclude" to tsconfig
