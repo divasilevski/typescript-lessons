@@ -13,5 +13,7 @@ console.log(s);
 // tsc --init
 
 
-// create index.html + add css framework
+// create index.html with dist script
 // add "exclude" or "include" or "files" to tsconfig
+// outDir ./dist
+// rootDir ./src
