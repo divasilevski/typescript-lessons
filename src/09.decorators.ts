@@ -36,20 +36,47 @@ class TestComponent {
 
 
 // Angular component
-class AngularComponent {
+interface IComponentDecorator {
+  selector: string
+  template: string
+}
 
-  name: string
+function AngularComponent(config: IComponentDecorator) {
+  return function
+    <T extends { new(...args: any[]): object }>
+    (Constructor: T) {
+    return class extends Constructor {
+      constructor(...args: any[]) {
+        super(...args)
 
-
-  get componentName() {
-    return this.name
+        const el = document.querySelector(config.selector)!
+        el.innerHTML = config.template
+      }
+    }
   }
+}
 
-  constructor(name: string) {
-    this.name = name
-  }
+
+@AngularComponent({
+  selector: "#card",
+  template: `
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Card Component</span>
+    </div>
+  </div>
+  `
+})
+class CardComponent {
+  constructor(public name: string) { }
 
   logName(): void {
     console.log(this.name)
   }
 }
+
+const card = new CardComponent("My card component")
+
+const BTN = document.querySelector('#btn')!
+
+BTN.addEventListener('click', card.logName.bind(card))
