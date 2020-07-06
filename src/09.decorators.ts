@@ -56,6 +56,17 @@ function AngularComponent(config: IComponentDecorator) {
   }
 }
 
+function Bind(_:any, _2: any, descriptor: PropertyDescriptor): PropertyDescriptor {
+  const original = descriptor.value
+
+  return {
+    configurable: true,
+    enumerable: true,
+    get() {
+      return original.bind(this)
+    }
+  }
+}
 
 @AngularComponent({
   selector: "#card",
@@ -70,6 +81,7 @@ function AngularComponent(config: IComponentDecorator) {
 class CardComponent {
   constructor(public name: string) { }
 
+  @Bind
   logName(): void {
     console.log(this.name)
   }
@@ -79,4 +91,4 @@ const card = new CardComponent("My card component")
 
 const BTN = document.querySelector('#btn')!
 
-BTN.addEventListener('click', card.logName.bind(card))
+BTN.addEventListener('click', card.logName)
