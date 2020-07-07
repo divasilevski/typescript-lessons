@@ -49,3 +49,13 @@ const id1: ID = 1234;
 const id2: ID = "1234";
 
 type SomeType = string | null | undefined;
+
+
+
+// From handbook
+let hex: number = 0xf00d
+let binary: number = 0b1010
+
+let someAny: any = "Trust me, ts"
+let strLength1: number = (<string>someAny).length
+let strLength2: number = (someAny as string).length
