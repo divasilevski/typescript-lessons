@@ -59,3 +59,17 @@ let binary: number = 0b1010
 let someAny: any = "Trust me, ts"
 let strLength1: number = (<string>someAny).length
 let strLength2: number = (someAny as string).length
+
+let matrix: number[][]
+
+let input = [1, 2];
+let [first1, second1] = input;
+let [first2, ...rest2] = [1, 2, 3, 4];
+let [, second3, , fourth3] = [1, 2, 3, 4];
+
+[first1, second1] = [second1, first1]; // swap variables
+
+function f([first, second]: [number, number]): void {}
+f([1, 2])
+
+let { a1, b1 } = { a1: "baz", b1: 101 }
