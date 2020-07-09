@@ -132,3 +132,20 @@ const ford: Readonly<ICar> = {
 }
 
 // ford.model = 'Ferrari' !!!
+
+
+
+// From handbook
+interface GenericIdentity<T> {
+  (arg: T): T;
+}
+
+
+function loggingIdentity<T>(arg: Array<T>): Array<T> {
+  console.log(arg.length);  // Array has a .length, so no more error
+  return arg;
+}
+
+
+
+
