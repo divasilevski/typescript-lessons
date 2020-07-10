@@ -76,7 +76,7 @@ let { a1, b1 } = { a1: "baz", b1: 101 }
 
 
 
-// From handbook Advanced types
+// From handbook compatibility
 let zoo: (Date | number | string)[] = [10, 'dsd', new Date()];
 
 
@@ -104,3 +104,23 @@ interface NotEmpty<T> {
 let x: NotEmpty<number>;
 let y: NotEmpty<string>;
 // x = y;  // Error, because x and y are not compatible
+
+
+
+// From handbook Advanced types
+function extend<First extends object, Second  extends object>(first: First, second: Second): First & Second { 
+  const result: Partial<First & Second> = {};
+  for (const prop in first) {
+      if (first.hasOwnProperty(prop)) {
+          (result as First)[prop] = first[prop];
+      }
+  }
+  for (const prop in second) {
+      if (second.hasOwnProperty(prop)) {
+          (result as Second)[prop] = second[prop];
+      }
+  }
+  return result as First & Second;
+}
+
+
