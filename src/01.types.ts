@@ -33,7 +33,7 @@ function throwError(message: string): never { // Never
 }
 
 function infinite(): never {
-  while (true){
+  while (true) {
     //
   }
 }
@@ -69,7 +69,7 @@ let [, second3, , fourth3] = [1, 2, 3, 4];
 
 [first1, second1] = [second1, first1]; // swap variables
 
-function fff([first, second]: [number, number]): void {}
+function fff([first, second]: [number, number]): void { }
 fff([1, 2])
 
 let { a1, b1 } = { a1: "baz", b1: 101 }
@@ -86,8 +86,8 @@ y1 = x1; // OK
 // x1 = y1; // Error
 
 
-let x2 = () => ({name: "Alice"});
-let y2 = () => ({name: "Alice", location: "Seattle"});
+let x2 = () => ({ name: "Alice" });
+let y2 = () => ({ name: "Alice", location: "Seattle" });
 x2 = y2; // OK
 // y2 = x2; // Error, because x() lacks a location property
 
@@ -108,19 +108,61 @@ let y: NotEmpty<string>;
 
 
 // From handbook Advanced types
-function extend<First extends object, Second  extends object>(first: First, second: Second): First & Second { 
+function extend<First extends object, Second extends object>(first: First, second: Second): First & Second {
   const result: Partial<First & Second> = {};
   for (const prop in first) {
-      if (first.hasOwnProperty(prop)) {
-          (result as First)[prop] = first[prop];
-      }
+    if (first.hasOwnProperty(prop)) {
+      (result as First)[prop] = first[prop];
+    }
   }
   for (const prop in second) {
-      if (second.hasOwnProperty(prop)) {
-          (result as Second)[prop] = second[prop];
-      }
+    if (second.hasOwnProperty(prop)) {
+      (result as Second)[prop] = second[prop];
+    }
   }
   return result as First & Second;
 }
 
 
+type LinkedList<T> = T & { next: LinkedList<T> };
+interface Person1 {
+  name: string;
+}
+let people1: LinkedList<Person1> = { name: "Dima", next: {} as LinkedList<Person1> };
+let s1 = people1.name;
+let s2 = people1.next.name;
+let s3 = people1.next.next.name;
+let s4 = people1.next.next.next.name;
+
+
+type Readonly2<T> = {
+  readonly [P in keyof T]: T[P];
+}
+type Partial2<T> = {
+  [P in keyof T]?: T[P];
+}
+
+
+type Keys = 'option1' | 'option2';
+type Flags = { [K in Keys]: boolean };
+
+
+declare function f11<T extends boolean>(x: T): T extends true ? string : number;
+
+
+function getProperty<ObjectType, KeyType extends keyof ObjectType>(
+  object: ObjectType, key: KeyType
+) {
+  return object[key];
+}
+const dog = {
+  name: 'Fluffy'
+};
+getProperty(dog, 'name');
+
+
+const colors = [
+  { color: 'red', code: { rgb: [255, 0, 0], hex: '#FF0000' } },
+  { color: 'green', code: { rgb: [0, 255, 0], hex: '#00FF00' } },
+  { color: 'blue', code: { rgb: [0, 0, 255], hex: '#0000FF' } },
+] as const; // CONST !!!!
