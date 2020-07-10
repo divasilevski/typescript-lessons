@@ -69,7 +69,38 @@ let [, second3, , fourth3] = [1, 2, 3, 4];
 
 [first1, second1] = [second1, first1]; // swap variables
 
-function f([first, second]: [number, number]): void {}
-f([1, 2])
+function fff([first, second]: [number, number]): void {}
+fff([1, 2])
 
 let { a1, b1 } = { a1: "baz", b1: 101 }
+
+
+
+// From handbook Advanced types
+let zoo: (Date | number | string)[] = [10, 'dsd', new Date()];
+
+
+let x1 = (a: number) => 0;
+let y1 = (b: number, s: string) => 0;
+y1 = x1; // OK
+// x1 = y1; // Error
+
+
+let x2 = () => ({name: "Alice"});
+let y2 = () => ({name: "Alice", location: "Seattle"});
+x2 = y2; // OK
+// y2 = x2; // Error, because x() lacks a location property
+
+
+enum Status { Ready, Waiting };
+enum Color { Red, Blue, Green };
+let status01 = Status.Ready;
+// status01 = Color.Green;  // Error
+
+
+interface NotEmpty<T> {
+  data: T;
+}
+let x: NotEmpty<number>;
+let y: NotEmpty<string>;
+// x = y;  // Error, because x and y are not compatible
