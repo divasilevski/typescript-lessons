@@ -20,3 +20,12 @@ type User = {
 
 type UserKeysNoMeta1 = Exclude<keyof User, "_id" | "createdAt">; // "name" | "email"
 type UserKeysNoMeta2 = Pick<User, "name" | "email">; // "name" | "email"
+
+
+
+// from handbook  IS
+function isFish2(pet: string | number): pet is string {
+  return pet as string !== undefined;
+}
+
+

@@ -42,3 +42,38 @@ function setAlertType(type: AlertType) {
 setAlertType("success");
 setAlertType("warning");
 //setAlertType("default"); // not valid
+
+
+
+// From handbook is
+function isFish(pet: string | number): pet is string {
+  return pet as string !== undefined;
+}
+
+
+// in
+function move(pet: { length: number } | any) {
+  if (length in pet) {
+    return pet.length;
+  }
+  return pet;
+}
+
+
+// ||
+function f6(sn: string | null): string {
+  return sn || "default";
+}
+
+
+type Name6 = string;
+type NameResolver = () => string;
+type NameOrResolver = Name6 | NameResolver;
+function getName(n: NameOrResolver): Name6 {
+    if (typeof n === "string") {
+        return n;
+    }
+    else {
+        return n();
+    }
+}
