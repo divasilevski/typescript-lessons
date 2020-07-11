@@ -118,5 +118,3 @@ const ClockNotStatic: ClockConstructor = class Clock implements ClockInterface {
       console.log("beep beep");
   }
 }
-
-
